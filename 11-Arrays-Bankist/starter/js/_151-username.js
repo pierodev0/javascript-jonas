@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Create an string of the 
- * @param {array} accs
+ * @param {array} accs Cuentas
  */
 const createUsernames = function (accs) {
   //Iterar el array

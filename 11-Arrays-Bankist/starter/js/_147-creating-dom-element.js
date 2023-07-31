@@ -46,4 +46,4 @@ function displayMovements(movements){
 }
 
 
-displayMovements(account1.movements)
+displayMovements(account2.movements)

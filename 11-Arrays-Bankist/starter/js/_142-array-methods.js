@@ -33,3 +33,14 @@ console.log([...arr,...arr2]);
 JOIN -> Une todos los elementos de una matriz (o un objeto similar a una matriz) en una cadena y devuelve esta cadena.
 ====================================*/
 console.log(arrayConcat.join("/"))
+
+const numbers = [1,2,3,4,5];
+const letter = ["a","b","c","d"];
+
+function get3LastElement(array){
+    return [...array].reverse().slice(0,3).reverse();
+}
+
+
+console.log(numbers.concat(letter))
+console.log(numbers.join(""))
