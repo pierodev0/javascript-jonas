@@ -25,3 +25,5 @@ console.log("-----For each-----")
 // })
 
 movements.forEach((mov,i) => console.log(mov,i));
+
+

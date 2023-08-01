@@ -9,7 +9,7 @@ console.log(arr.slice(-1));
 console.log(arr.slice());
 
 /*====================================
-SPLICE -> Igual que slice pero muta el array. El segundo argumento es elementos que queremos eliminar
+SPLICE ->  Cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos
 ====================================*/
 
 //Eliminar ultimo elemento de un array
