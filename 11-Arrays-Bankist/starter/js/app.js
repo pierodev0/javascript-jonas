@@ -33,9 +33,12 @@ const inputClosePin = document.querySelector('.form__input--pin');
 FUNCIONES
 ====================================*/
 
-function displayMovements(movements) {
+function displayMovements(movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach((mov, i) => {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -151,6 +154,30 @@ btnTransfer.addEventListener('click', e => {
 });
 
 /*====================================
+SORT
+====================================*/
+let sorted = false;
+btnSort.addEventListener("click", e => {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+})
+
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //ADD MOVEMENT
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+
+    inputLoanAmount.value = '';
+    inputLoanAmount.blur();
+  }
+});
+
+/*====================================
 CLOSE ACCCOUNT -> Find Index
 ====================================*/
 btnClose.addEventListener('click', e => {
@@ -162,19 +189,15 @@ btnClose.addEventListener('click', e => {
     inputCloseUsername.value === currentAccount.username &&
     Number(inputClosePin.value) === currentAccount.pin
   ) {
-    console.log('Usuario confirmado');
-
     const indexAccount = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
-    
+
     //Delete account
     accounts.splice(indexAccount, 1);
     //Hide UI
     containerApp.style.opacity = 0;
   }
 
-  inputCloseUsername.value = inputClosePin.value = "";
-
-
+  inputCloseUsername.value = inputClosePin.value = '';
 });
